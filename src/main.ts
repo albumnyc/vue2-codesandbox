@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import compositionApi from "@vue/composition-api";
 import axios from './models/axios';
-import { setModleConfig } from 'dobux-vue';
+import { makeAjax, setModleConfig } from 'dobux-vue';
 
 Vue.config.productionTip = false;
 Vue.use(compositionApi);
@@ -16,10 +16,10 @@ setModleConfig({
 });
 
 declare module 'dobux-vue' {
-  export interface Response<T> {
-    data: T;
+  export interface AxiosResponse<D> {
+    s?: string;
     result: number;
-    error_msg: string;
+    data: D;
   }
 }
 
